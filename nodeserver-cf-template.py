@@ -30,10 +30,10 @@ from awacs.aws import (
 
 from awacs.sts import AssumeRole
 
-ApplicationName = "nodeserver"
-ApplicationPort = "3000"
+ApplicationName = "nodeserver" 
+ApplicationPort = "3000" 
 
-GithubAccount = "genekuo"
+GithubAccount = "EffectiveDevOpsWithAWS"
 GithubAnsibleURL = "https://github.com/{}/ansible".format(GithubAccount)
 
 AnsiblePullCmd = \
@@ -98,20 +98,6 @@ t.add_resource(Role(
 t.add_resource(InstanceProfile(
     "InstanceProfile",
     Path="/",
-    Roles=[Ref("Role")]
-))
-
-t.add_resource(IAMPolicy(
-    "Policy",
-    PolicyName="AllowS3",
-    PolicyDocument=Policy(
-        Statement=[
-            Statement(
-                Effect=Allow,
-                Action=[Action("s3", "*")],
-                Resource=["*"])
-        ]
-    ),
     Roles=[Ref("Role")]
 ))
 
